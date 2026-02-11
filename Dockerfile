@@ -1,7 +1,7 @@
 FROM gcr.io/kaniko-project/executor:debug AS kaniko
 FROM alpine:3.23.2
 
-RUN apk --update add jq vault libcap curl
+RUN apk update && apk add --no-cache jq vault libcap curl
 RUN setcap cap_ipc_lock= /usr/sbin/vault
 
 COPY --from=kaniko /kaniko/ /kaniko/
